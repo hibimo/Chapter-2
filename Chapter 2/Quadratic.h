@@ -87,7 +87,6 @@ public:
 	// Pre-condition:  Coefficients a, b, and c are finite values
 	// Post-condition: Returns discriminant (b^2 - 4ac)
 	double discriminant() const {
-		// TODO: To be implemented by team
 		return b * b - 4 * a * c;
 	}
 
@@ -96,34 +95,70 @@ public:
 	int NumRealRoot() const
 	{
 		// TODO: To be implemented by team
-		std::cout << "\n\t[Not yet implemented: NumRealRoot]\n";
-		return 0;
+			if (a == 0 && b == 0 && c == 0)
+				return 3;
+
+			if (a == 0 && b == 0)
+				return 0;
+
+			if (a == 0)
+				return 1;
+
+			if (discriminant() < 0)
+				return 0;
+
+			if (discriminant() == 0)
+				return 1;
+
+			return 2;
 	}
 
 	// Pre-condition:  At least one real root exists (NumRealRoot() == 1 or 2)
 	// Post-condition: Returns smaller real root value; returns 0 if no root or infinite roots
 	double SmallerRoot() const
 	{
-		// TODO: To be implemented by team
-		std::cout << "\n\t[Not yet implemented: SmallerRoot]\n";
-		return 0.0;
+		int numRoots = NumRealRoot();
+
+		if (numRoots == 0 || numRoots == 3)
+			return 0.0;
+
+		if (a == 0)
+			return -c / b;
+
+		if (numRoots == 1)
+			return -b / (2.0 * a);
+
+		double root1 = (-b + std::sqrt(discriminant())) / (2.0 * a);
+		double root2 = (-b - std::sqrt(discriminant())) / (2.0 * a);
+
+		return (root1 < root2) ? root1 : root2;
 	}
 
 	// Pre-condition:  At least one real root exists (NumRealRoot() == 1 or 2)
 	// Post-condition: Returns larger real root value; returns 0 if no root or infinite roots
 	double LargerRoot() const
 	{
-		// TODO: To be implemented by team
-		std::cout << "\n\t[Not yet implemented: LargerRoot]\n";
-		return 0.0;
+		int numRoots = NumRealRoot();
+
+		if (numRoots == 0 || numRoots == 3)
+			return 0.0;
+
+		if (a == 0)
+			return -c / b;
+
+		if (numRoots == 1)
+			return -b / (2.0 * a);
+
+		double root1 = (-b + std::sqrt(discriminant())) / (2.0 * a);
+		double root2 = (-b - std::sqrt(discriminant())) / (2.0 * a);
+
+		return (root1 > root2) ? root1 : root2;
 	}
 
 	// Pre-condition:  x is set
 	// Post-condition: Returns evaluated value: a*x^2 + b*x + c
 	double quadratic() const {
-		// TODO: To be implemented by team
-		std::cout << "\n\t[Not yet implemented: quadratic]\n";
-		return 0.0;
+		return (a * x * x) + (b * x) + c;
 	}
 };
 
@@ -131,11 +166,10 @@ public:
 // Post-condition: Returns new Quadratic whose coefficients are sum of q1 and q2
 inline Quadratic operator +(const Quadratic& q1, const Quadratic& q2)
 {
-	// TODO: To be implemented by team
-	(void)q1;
-	(void)q2;
-	std::cout << "\n\t[Not yet implemented: operator+]\n";
 	Quadratic temp;
+	temp.setA(q1.getA() + q2.getA());
+	temp.setB(q1.getB() + q2.getB());
+	temp.setC(q1.getC() + q2.getC());
 	return temp;
 }
 
@@ -143,10 +177,9 @@ inline Quadratic operator +(const Quadratic& q1, const Quadratic& q2)
 // Post-condition: Returns new Quadratic whose coefficients are scaled by r
 inline Quadratic operator *(double r, const Quadratic& q1)
 {
-	// TODO: To be implemented by team
-	(void)r;
-	(void)q1;
-	std::cout << "\n\t[Not yet implemented: operator*]\n";
 	Quadratic temp;
+	temp.setA(r * q1.getA());
+	temp.setB(r * q1.getB());
+	temp.setC(r * q1.getC());
 	return temp;
 }
