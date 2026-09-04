@@ -183,3 +183,4 @@ inline Quadratic operator *(double r, const Quadratic& q1)
 	temp.setC(r * q1.getC());
 	return temp;
 }
+//test
