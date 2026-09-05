@@ -460,8 +460,7 @@ void RationalFunction()
 					cout << "\n\tERROR: Denominator cannot be zero.\n";
 					break;
 				}
-				R1.setNumerator(n);
-				R1.setDenominator(d);
+				R1 = Rational(n, d);// Sets both values together so the rational simplifies correctly.
 				cout << "\n\tR1 set to: " << R1.getNumerator() << "/" << R1.getDenominator() << "\n";
 				break;
 			}
@@ -477,8 +476,7 @@ void RationalFunction()
 					cout << "\n\tERROR: Denominator cannot be zero.\n";
 					break;
 				}
-				R2.setNumerator(n);
-				R2.setDenominator(d);
+				R2 = Rational(n, d);// Sets both values together so the rational simplifies correctly.
 				cout << "\n\tR2 set to: " << R2.getNumerator() << "/" << R2.getDenominator() << "\n";
 				break;
 			}
